@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import Button from '../components/Button'
 import TextField from '../components/TextField'
+import { addUser } from './Users/userSlice'
+import { v4 as uuidv4 } from 'uuid';
 
 const AddUser = () => {
-    
+    const dispatch=useDispatch();
     const navigate=useNavigate();
     const[values,setValues]=useState({
         name:'',
@@ -13,6 +16,11 @@ const AddUser = () => {
 
     const handleAddUser=()=>{
         setValues({name:'',email:''});
+        dispatch(addUser({
+          id: uuidv4,
+          name:values.name,
+          email:values.email
+        }))
         navigate('/');
     }
 

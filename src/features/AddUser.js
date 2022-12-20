@@ -7,38 +7,41 @@ import { addUser } from './Users/userSlice'
 import { v4 as uuidv4 } from 'uuid';
 
 const AddUser = () => {
-    const dispatch=useDispatch();
-    const navigate=useNavigate();
-    const[values,setValues]=useState({
-        name:'',
-        email:''
-    })
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-    const handleAddUser=()=>{
-        setValues({name:'',email:''});
-        dispatch(addUser({
-          id: uuidv4(),
-          name:values.name,
-          email:values.email
-        }))
-        navigate('/');
-    }
+  const [values, setValues] = useState({
+    name: '',
+    email: ''
+  })
+
+  const handleAddUser = () => {
+    setValues({ name: '', email: '' });
+    dispatch(addUser({
+      id: uuidv4(),
+      name: values.name,
+      email: values.email
+    }))
+    navigate('/');
+  }
 
   return (
     <div className='mt-10 max-w-xl mx-auto'>
-    <TextField
-    label="Name"
-    onChange={(e)=>setValues({...values,name:e.target.value})}
-    inputProps={{type :'text',placeholder:'jhon'}}
-    />
-    <TextField
-    label="Email"
-    onChange={(e)=>setValues({...values,email:e.target.value})}
-    inputProps={{type:'email',placeholder:'jhone@mail.com'}}
-    />
+      <TextField
+        label="Name"
+        value={values.name}
+        onChange={(e) => setValues({ ...values, name: e.target.value })}
+        inputProps={{ type: 'text', placeholder: 'Enter Name Here' }}
+      />
+      <TextField
+        label="Email"
+        value={values.email}
+        onChange={(e) => setValues({ ...values, email: e.target.value })}
+        inputProps={{ type: 'email', placeholder: 'MailID@mail.com' }}
+      />
 
-    <Button onClick={handleAddUser}>Submit</Button>
-    
+      <Button onClick={handleAddUser}>Submit</Button>
+
     </div>
   )
 }

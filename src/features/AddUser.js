@@ -17,7 +17,7 @@ const AddUser = () => {
     const handleAddUser=()=>{
         setValues({name:'',email:''});
         dispatch(addUser({
-          id: uuidv4,
+          id: uuidv4(),
           name:values.name,
           email:values.email
         }))
